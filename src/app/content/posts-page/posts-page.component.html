@@ -1,0 +1,29 @@
+<div class="container">
+   
+    <form class="post-generator" *ngIf="userRole=='admin'" [formGroup]='addForm' (ngSubmit)="onAddNew($event)">
+        <div class="title">
+            Create new post!
+        </div>
+        <label class="input-holder">
+            Title
+            <input type="text" class="input" formControlName="title">
+        </label>
+        <label class="input-holder">
+            Text
+            <textarea class="textarea" cols="30" rows="3" formControlName="text"></textarea>
+        </label>
+        <button class="btn btn_green" [disabled]="addForm.invalid">
+            Add 
+        </button>
+    </form>
+    <div class="post-list"  *ngIf="posts.length > 0;">
+        <app-post *ngFor="let post of posts" [post]="post" [userRole]="userRole"></app-post>
+    </div>
+    <div *ngIf="posts.length==0 && logged">
+        There are no posts yes. Create one
+    </div>
+</div>
+<ng-template #notLoggedIn>
+    To observe this page 
+    <a routerLink="../auth"> login</a> first
+</ng-template>

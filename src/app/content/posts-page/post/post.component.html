@@ -1,0 +1,17 @@
+<div class="post">
+    <div class="post-title" *ngIf="!this.post.editable">{{ post.title }}</div>
+    <input class="edit-title" type="text" *ngIf="post.editable" [(ngModel)]="post.title">
+    <div class="post-content" *ngIf="!post.editable">{{ post.text }}</div>
+    <textarea class="edit-text" [(ngModel)]="post.text" *ngIf="post.editable" rows="10"></textarea>
+    <div class="btn-holder">
+        <a class="btn" [routerLink]="['post', post.id]" routerLinkActive="router-link-active">
+            View post
+        </a>
+        
+        <button class="btn btn_green" (click)="makeEditable()" data-id="{{ post.id }}"
+            *ngIf="!post.editable && userRole=='admin'">Edit</button>
+        <button class="btn btn_green" (click)="onEdit()" data-id="{{ post.id }}"
+            *ngIf="post.editable&& userRole=='admin'">Submit</button>
+        <button class="btn btn_remove" (click)="onRemove()" data-id="{{ post.id }}" *ngIf="userRole=='admin'">Remove</button>
+    </div>
+</div>

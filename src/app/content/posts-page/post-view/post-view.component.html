@@ -1,0 +1,13 @@
+<div class="container">
+  
+    <h2>Post Details</h2>
+    
+    <div class="post1" *ngIf="post">
+      <h3>{{ post.title }}</h3>
+      <div>{{ post.text }}</div>
+      <button  class="btn" routerLink="/content">
+        Go back
+    </button>  
+    </div>
+
+</div>

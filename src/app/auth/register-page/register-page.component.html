@@ -1,0 +1,36 @@
+<div class="form-holder" *ngIf="!logged; else alreadyLoggedMessage">
+    <form class="form" [formGroup]='form' (ngSubmit)="onSubmit()">
+        <div class="form-heading">
+            Create new user
+        </div>
+        <div class="input-holder">
+            <input formControlName="email" type="email" class="input" placeholder="Enter your login">
+        </div>
+        <div class="input-holder">
+            <input formControlName="password" type="password" class="input" placeholder="Enter your password">
+        </div>
+        <div class="select-holder">
+            Select user role
+            <select name="select" id="user_role" formControlName="userRole">
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+            </select>
+        </div>
+        <button type="submit" [disabled]="form.invalid" class="btn">
+            <span   *ngIf="!loading; else loader">
+                Create user
+            </span>
+        </button>
+        <p>Already have an account?</p>
+        <a routerLink="../auth" class="link">
+            Sing up
+        </a>
+        <div class="error-holder">
+            {{ error }}
+        </div>
+    </form>
+</div>
+
+<ng-template #loader>
+    <div class="loader"></div>
+</ng-template>

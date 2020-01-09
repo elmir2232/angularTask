@@ -1,0 +1,43 @@
+<div class="form-holder">
+    <form class="form" [formGroup]='form' (ngSubmit)="onSubmit()" *ngIf="!logged; else alreadyLoggedMessage">
+        <p>LOGIN</p>
+        <div class="input-holder">
+            <input formControlName="email" type="email" class="input" placeholder="Enter your login">
+        </div>
+        <div class="input-holder">
+            <input formControlName="password" type="password" class="input" placeholder="Enter your password">
+        </div>
+        <button type="submit" [disabled]="form.invalid" class="btn btn_signin" >
+            <span routerLink="../content" *ngIf="!loading; else loader">
+                Sign in
+            </span>
+        </button>
+        <p>Dont have an account?</p>
+        <a routerLink="../registration" class="link">
+           Sign up
+        </a>
+        <div class="error-holder">
+            {{ error }}
+        </div>
+    </form>
+</div>
+<ng-template #alreadyLoggedMessage>
+    <div class="form-holder">
+        <div class="form">
+            <span class="form-heading">
+                Hi! new user!<br>{{ loggedEmail }}
+            </span>
+            <div class="btn-holder">
+                <a routerLink="../content" class="btn">
+                    Watch my blog....
+                </a>
+                <div class="btn btn_logOut" (click)="signOut()">
+                    Logout
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<ng-template #loader>
+    <div class="loader"></div>
+</ng-template>

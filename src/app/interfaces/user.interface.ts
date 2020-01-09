@@ -1,0 +1,5 @@
+interface IUser {
+    role: string
+}
+
+
